@@ -3,12 +3,15 @@ from tkinter import messagebox
 import numpy as np
 import pandas as pd
 import joblib
+import os
 
 # === CARGA DE MODELOS ===
-modelo_svm = joblib.load("modelo_svm.pkl")
-scaler_svm = joblib.load("scaler_svm.pkl")
-modelo_bayes = joblib.load("modelo_bayes.pkl")
-red = np.load("red_92.npz")
+base_path = os.path.dirname(__file__)  # Ruta del archivo actual
+modelo_svm = joblib.load(os.path.join(base_path, "modelo_svm.pkl"))
+scaler_svm = joblib.load(os.path.join(base_path, "scaler_svm.pkl"))
+modelo_bayes = joblib.load(os.path.join(base_path, "modelo_bayes.pkl"))
+red = np.load(os.path.join(base_path, "red_92.npz"))
+
 W1, b1, W2, b2 = red["W1"], red["b1"], red["W2"], red["b2"]
 val_min, val_max = red["val_min"], red["val_max"]
 ymax, ymin = 1.0, 0.1
